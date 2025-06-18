@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>detalle de pelicula</h1>
+    <div id="container-pelicula"></div>
+
+
+    <script>
+        let page = window.location.pathname.split("/")
+        let listOfmovies = page[page.length - 1].split(".").shift()
+        console.log(listOfmovies)
+
+        const params = new URLSearchParams(location.search);
+        const myParam = parseInt(params.get("id"));
+        console.log(myParam)
+
+        const url = "https://api.themoviedb.org/3/movie/top_rated?api_key="
+        const api_key = 'c0ef5fa9f031369e95da9661af9b65e6';
+
+        fetchMovieDetails(myParam)
+        fetchMovieCast(myParam)
+        fetchMovieImages(myParam)
+
+        async function fetchMovieDetails(id) {
+            console.log(id)
+            let response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=es-ES`)
+            let data = await response.json()
+            console.log("detail:", data)
+        }
+        async function fetchMovieCast(id) {
+            console.log(id)
+            let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}&language=es-ES`)
+            let data = await response.json()
+            console.log("detail:", data)
+        }
+        async function fetchMovieImages(id) {
+            console.log(id)
+            let response = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${api_key}`)
+            let data = await response.json()
+            console.log("detail:", data)
+        }
+
+    </script>
+</body>
+
+</html>
