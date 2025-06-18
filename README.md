@@ -1,3 +1,3 @@
 
-(https://roseveltbarahona.github.io/movie-db)
+https://roseveltbarahona.github.io/movie-db
 
